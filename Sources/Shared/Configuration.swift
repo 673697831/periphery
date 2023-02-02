@@ -87,6 +87,9 @@ public final class Configuration {
 
     // Dependencies.
     private var logger: BaseLogger // Must use BaseLogger as Logger depends upon Configuration.
+    
+    // output path
+    public var outputPath: String?
 
     public func asYaml() throws -> String {
         var config: [String: Any?] = [:]

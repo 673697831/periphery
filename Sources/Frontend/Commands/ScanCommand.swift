@@ -86,6 +86,9 @@ struct ScanCommand: FrontendCommand {
 
     @Flag(help: "Only output results")
     var quiet: Bool = defaultConfiguration.$quiet.defaultValue
+    
+    @Option(help: "Path to Setup output file. ")
+    var outputfile: String?
 
     private static let defaultConfiguration = Configuration()
 
@@ -122,6 +125,7 @@ struct ScanCommand: FrontendCommand {
         configuration.apply(\.$skipBuild, skipBuild)
         configuration.apply(\.$cleanBuild, cleanBuild)
         configuration.apply(\.$buildArguments, buildArguments)
+        configuration.outputPath = outputfile
 
         try scanBehavior.main { project in
             try Scan().perform(project: project)
